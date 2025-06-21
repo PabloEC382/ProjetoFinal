@@ -1,5 +1,5 @@
 using System;
-using GenerenciadorGraos.Entidades;
+using GerenciadorGraos.Entidades; // Corrigido o namespace
 
 namespace GerenciadorGraos.Models
 {
@@ -11,10 +11,9 @@ namespace GerenciadorGraos.Models
         public DateTime DataColheita { get; set; }
         public double Quantidade { get; set; }
 
-
         public Grao() { }
 
-        public Grao(int id, string nome, string tipo, DateTime dataColheita, double quantidade, string unidadeMedida)
+        public Grao(int id, string nome, string tipo, DateTime dataColheita, double quantidade)
         {
             Id = id;
             Nome = nome;
