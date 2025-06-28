@@ -1,0 +1,24 @@
+[
+  {
+    "Id": "08cc3bdf-23a2-4958-9e04-191cd55ed429",
+    "Nome": "Milho",
+    "NumeroLote": "3",
+    "Peso": 300,
+    "Quantidade": 500,
+    "DataEntrega": "2025-09-01T00:00:00",
+    "ValorUnitario": 3,
+    "FornecedorId": "81f35378-82f9-4c03-81d6-6179e98095bd",
+    "ValorTotalLote": 1500
+  },
+  {
+    "Id": "56eceb2d-3753-46ad-88b9-414085998e65",
+    "Nome": "trigo",
+    "NumeroLote": "2",
+    "Peso": 450,
+    "Quantidade": 300,
+    "DataEntrega": "2025-08-01T00:00:00",
+    "ValorUnitario": 1,
+    "FornecedorId": "81f35378-82f9-4c03-81d6-6179e98095bd",
+    "ValorTotalLote": 300
+  }
+]

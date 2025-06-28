@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "66711007-5e8d-4593-b70e-959dd1f33521",
+    "Nome": "Silo-1",
+    "CapacidadeMaxima": 700,
+    "CapacidadeAtual": 300,
+    "Temperatura": 30,
+    "TipoGrao": "Milho"
+  },
+  {
+    "Id": "a7ce031e-63e6-4063-9bd8-71dd909db74c",
+    "Nome": "Silo-2",
+    "CapacidadeMaxima": 800,
+    "CapacidadeAtual": 450,
+    "Temperatura": 45,
+    "TipoGrao": "trigo"
+  }
+]
