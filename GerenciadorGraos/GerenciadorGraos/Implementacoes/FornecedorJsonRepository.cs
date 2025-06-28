@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using GerenciadorGraos.Entidades;
+using GerenciadorGraos.Models;
 
 namespace GerenciadorGraos.Implementacoes
 {
@@ -28,12 +29,12 @@ namespace GerenciadorGraos.Implementacoes
         public void Adicionar(Fornecedor fornecedor)
         {
             var fornecedores = ObterTodos();
-            fornecedor.Id = fornecedores.Any() ? fornecedores.Max(f => f.Id) + 1 : 1;
+            fornecedor.Id = Guid.NewGuid();
             fornecedores.Add(fornecedor);
             SalvarTodos(fornecedores);
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             var fornecedores = ObterTodos();
             var fornecedor = fornecedores.FirstOrDefault(f => f.Id == id);
@@ -55,7 +56,7 @@ namespace GerenciadorGraos.Implementacoes
             }
         }
 
-        public Fornecedor ObterPorId(int id)
+        public Fornecedor? ObterPorId(Guid id)
         {
             return ObterTodos().FirstOrDefault(f => f.Id == id);
         }

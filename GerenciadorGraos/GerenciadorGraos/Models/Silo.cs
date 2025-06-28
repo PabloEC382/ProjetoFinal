@@ -1,19 +1,15 @@
 using System;
+using GerenciadorGraos.Entidades;
 
 namespace GerenciadorGraos.Models
 {
-    public class Silo
+    public class Silo : IEntidade
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
+        public Guid Id { get; set; }
+        public string Nome { get; set; } = string.Empty;
         public double CapacidadeMaxima { get; set; }
-        public double QuantidadeAtual { get; set; }
-        public string Localizacao { get; set; }
-
-        public int FornecedorId { get; set; }
-        public Fornecedor Fornecedor { get; set; }
-
-        public DateTime DataUltimaEntrada { get; set; }
-        public DateTime? DataUltimaSaida { get; set; }
+        public double? CapacidadeAtual { get; set; }
+        public double Temperatura { get; set; }
+        public string TipoGrao { get; set; } = string.Empty;
     }
 }

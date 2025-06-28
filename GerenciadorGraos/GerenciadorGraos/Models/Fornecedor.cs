@@ -1,20 +1,13 @@
-using System.Collections.Generic;
+using System;
+using GerenciadorGraos.Entidades;
 
 namespace GerenciadorGraos.Models
 {
     public class Fornecedor : IEntidade
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Cnpj { get; set; }
-        public string Endereco { get; set; }
-        public string Telefone { get; set; }
-
-        public List<Silo> Silos { get; set; }
-
-        public Fornecedor()
-        {
-            Silos = new List<Silo>();
-        }
+        public Guid Id { get; set; }
+        public string Nome { get; set; } = string.Empty;
+        public string CnpjOuCaf { get; set; } = string.Empty;
+        public string Telefone { get; set; } = string.Empty;
     }
 }

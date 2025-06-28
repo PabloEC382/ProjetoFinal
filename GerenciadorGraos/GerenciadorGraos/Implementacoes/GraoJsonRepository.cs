@@ -36,7 +36,7 @@ namespace GerenciadorGraos.Implementacoes
 
         public void Adicionar(Grao grao)
         {
-            grao.Id = _graos.Any() ? _graos.Max(g => g.Id) + 1 : 1;
+            grao.Id = Guid.NewGuid();
             _graos.Add(grao);
             SalvarNoArquivo();
         }
@@ -47,14 +47,17 @@ namespace GerenciadorGraos.Implementacoes
             if (existente != null)
             {
                 existente.Nome = grao.Nome;
-                existente.Tipo = grao.Tipo;
-                existente.DataColheita = grao.DataColheita;
+                existente.NumeroLote = grao.NumeroLote;
+                existente.Peso = grao.Peso;
                 existente.Quantidade = grao.Quantidade;
+                existente.DataEntrega = grao.DataEntrega;
+                existente.ValorUnitario = grao.ValorUnitario;
+                existente.FornecedorId = grao.FornecedorId;
                 SalvarNoArquivo();
             }
         }
 
-        public void Remover(int id)
+        public void Remover(Guid id)
         {
             var grao = _graos.FirstOrDefault(g => g.Id == id);
             if (grao != null)
@@ -64,7 +67,7 @@ namespace GerenciadorGraos.Implementacoes
             }
         }
 
-        public Grao ObterPorId(int id)
+        public Grao? ObterPorId(Guid id)
         {
             return _graos.FirstOrDefault(g => g.Id == id);
         }

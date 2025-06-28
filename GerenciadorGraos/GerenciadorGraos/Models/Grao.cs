@@ -1,25 +1,23 @@
 using System;
-using GerenciadorGraos.Entidades; // Corrigido o namespace
+using GerenciadorGraos.Entidades;
 
 namespace GerenciadorGraos.Models
 {
     public class Grao : IEntidade
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Tipo { get; set; }
-        public DateTime DataColheita { get; set; }
-        public double Quantidade { get; set; }
+        public Guid Id { get; set; }
+        public string Nome { get; set; } = string.Empty;
+        public string NumeroLote { get; set; } = string.Empty;
+        public double Peso { get; set; }
+        public int Quantidade { get; set; }
+        public DateTime DataEntrega { get; set; }
+        public decimal ValorUnitario { get; set; }
+        public Guid FornecedorId { get; set; }
+        public decimal ValorTotalLote { get; set; } // Novo atributo
 
-        public Grao() { }
-
-        public Grao(int id, string nome, string tipo, DateTime dataColheita, double quantidade)
+        public void AtualizarValorTotal()
         {
-            Id = id;
-            Nome = nome;
-            Tipo = tipo;
-            DataColheita = dataColheita;
-            Quantidade = quantidade;
+            ValorTotalLote = ValorUnitario * Quantidade;
         }
     }
 }

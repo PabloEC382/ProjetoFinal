@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using GerenciadorGraos.Models;
 
@@ -7,8 +8,8 @@ namespace GerenciadorGraos.Interfaces
     {
         void Adicionar(Grao grao);
         void Atualizar(Grao grao);
-        void Remover(int id);
-        Grao ObterPorId(int id);
+        void Remover(Guid id);
+        Grao? ObterPorId(Guid id);
         IEnumerable<Grao> ObterTodos();
     }
 }
