@@ -37,12 +37,8 @@ namespace GerenciadorGraos.Implementacoes
         public void Remover(Guid id)
         {
             var fornecedores = ObterTodos();
-            var fornecedor = fornecedores.FirstOrDefault(f => f.Id == id);
-            if (fornecedor != null)
-            {
-                fornecedores.Remove(fornecedor);
-                SalvarTodos(fornecedores);
-            }
+            var novoList = fornecedores.Where(f => f.Id != id).ToList();
+            SalvarTodos(novoList);
         }
 
         public void Atualizar(Fornecedor fornecedor)

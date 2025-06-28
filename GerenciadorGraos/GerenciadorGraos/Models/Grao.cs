@@ -13,7 +13,7 @@ namespace GerenciadorGraos.Models
         public DateTime DataEntrega { get; set; }
         public decimal ValorUnitario { get; set; }
         public Guid FornecedorId { get; set; }
-        public decimal ValorTotalLote { get; set; } // Novo atributo
+        public decimal ValorTotalLote { get; set; }
 
         public void AtualizarValorTotal()
         {

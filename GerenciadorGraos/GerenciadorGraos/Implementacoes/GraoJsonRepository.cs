@@ -46,6 +46,7 @@ namespace GerenciadorGraos.Implementacoes
             var existente = _graos.FirstOrDefault(g => g.Id == grao.Id);
             if (existente != null)
             {
+                // Atualiza todos os campos
                 existente.Nome = grao.Nome;
                 existente.NumeroLote = grao.NumeroLote;
                 existente.Peso = grao.Peso;
@@ -53,18 +54,15 @@ namespace GerenciadorGraos.Implementacoes
                 existente.DataEntrega = grao.DataEntrega;
                 existente.ValorUnitario = grao.ValorUnitario;
                 existente.FornecedorId = grao.FornecedorId;
+                existente.ValorTotalLote = grao.ValorTotalLote;
                 SalvarNoArquivo();
             }
         }
 
         public void Remover(Guid id)
         {
-            var grao = _graos.FirstOrDefault(g => g.Id == id);
-            if (grao != null)
-            {
-                _graos.Remove(grao);
-                SalvarNoArquivo();
-            }
+            _graos = _graos.Where(g => g.Id != id).ToList();
+            SalvarNoArquivo();
         }
 
         public Grao? ObterPorId(Guid id)

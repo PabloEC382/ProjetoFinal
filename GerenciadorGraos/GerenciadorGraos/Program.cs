@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using GerenciadorGraos.Models;
 using GerenciadorGraos.Implementacoes;
 
@@ -7,7 +8,7 @@ class Program
     static void Main()
     {
         var graoRepo = new GraoJsonRepository();
-        var siloRepo = new SiloJsonRepository();
+        var siloRepo = new SiloSqlRepositorio(); // Agora usando LINQ to Entities (EF Core)
         var fornecedorRepo = new FornecedorJsonRepository();
 
         while (true)
@@ -31,6 +32,7 @@ class Program
         Console.WriteLine("2 - Listar Grãos");
         Console.WriteLine("3 - Atualizar Grão");
         Console.WriteLine("4 - Remover Grão");
+        Console.WriteLine("5 - Buscar Grãos por Nome (LINQ)");
         var op = Console.ReadLine();
 
         if (op == "1")
@@ -156,15 +158,24 @@ class Program
             }
             graoRepo.Remover(id);
         }
+        else if (op == "5")
+        {
+            Console.Write("Digite o nome do grão para buscar: ");
+            var nomeBusca = Console.ReadLine();
+            var resultados = graoRepo.ObterTodos().Where(g => g.Nome.Contains(nomeBusca ?? "", StringComparison.OrdinalIgnoreCase));
+            foreach (var g in resultados)
+                Console.WriteLine($"{g.Id} - {g.Nome} - Lote: {g.NumeroLote} - Peso: {g.Peso}Kg - Quantidade: {g.Quantidade} - Valor Unitário: R$ {g.ValorUnitario:F2} - Total: R$ {g.ValorTotalLote:F2}");
+        }
     }
 
-    static void MenuSilo(SiloJsonRepository siloRepo, GraoJsonRepository graoRepo)
+    static void MenuSilo(SiloSqlRepositorio siloRepo, GraoJsonRepository graoRepo)
     {
         Console.WriteLine("1 - Adicionar Silo");
         Console.WriteLine("2 - Listar Silos");
         Console.WriteLine("3 - Inserir lote de grão no Silo");
         Console.WriteLine("4 - Remover Silo");
         Console.WriteLine("5 - Remover quantidade de grão do Silo");
+        Console.WriteLine("6 - Buscar Silos por Tipo de Grão (LINQ to Entities)");
         var op = Console.ReadLine();
 
         if (op == "1")
@@ -194,7 +205,7 @@ class Program
             Console.Write("Tipo do grão: ");
             silo.TipoGrao = Console.ReadLine() ?? string.Empty;
 
-            silo.CapacidadeAtual = 0; // Começa vazio
+            silo.CapacidadeAtual = 0;
             silo.Id = Guid.NewGuid();
             siloRepo.Adicionar(silo);
             Console.WriteLine("Silo cadastrado com sucesso!");
@@ -230,14 +241,12 @@ class Program
                 return;
             }
 
-            // Verifica tipo do grão
             if (!string.IsNullOrEmpty(silo.TipoGrao) && !silo.TipoGrao.Equals(grao.Nome, StringComparison.OrdinalIgnoreCase))
             {
                 Console.WriteLine($"Este silo só pode armazenar grãos do tipo '{silo.TipoGrao}'.");
                 return;
             }
 
-            // Verifica capacidade
             var novaCapacidade = (silo.CapacidadeAtual ?? 0) + grao.Peso;
             if (novaCapacidade > silo.CapacidadeMaxima)
             {
@@ -245,7 +254,6 @@ class Program
                 return;
             }
 
-            // Atualiza capacidade e tipo do grão do silo
             silo.CapacidadeAtual = novaCapacidade;
             silo.TipoGrao = grao.Nome;
             siloRepo.Atualizar(silo);
@@ -308,7 +316,6 @@ class Program
                 return;
             }
 
-            // Atualiza os valores
             silo.CapacidadeAtual -= qtdRemover;
             grao.Peso -= qtdRemover;
             grao.AtualizarValorTotal();
@@ -316,6 +323,14 @@ class Program
             graoRepo.Atualizar(grao);
 
             Console.WriteLine("Quantidade removida do silo e do lote com sucesso!");
+        }
+        else if (op == "6")
+        {
+            Console.Write("Digite o nome do silo para buscar: ");
+            var nomeBusca = Console.ReadLine();
+            var silos = siloRepo.ObterTodos().Where(s => s.Nome.Contains(nomeBusca ?? "", StringComparison.OrdinalIgnoreCase));
+            foreach (var s in silos)
+                Console.WriteLine($"{s.Id} - {s.Nome} - Capacidade Máxima: {s.CapacidadeMaxima} - Atual: {s.CapacidadeAtual} - Temperatura: {s.Temperatura} - Tipo de Grão: {s.TipoGrao}");
         }
     }
 
@@ -325,6 +340,7 @@ class Program
         Console.WriteLine("2 - Listar Fornecedores");
         Console.WriteLine("3 - Atualizar Fornecedor");
         Console.WriteLine("4 - Remover Fornecedor");
+        Console.WriteLine("5 - Buscar Fornecedor por Nome (LINQ)");
         var op = Console.ReadLine();
 
         if (op == "1")
@@ -383,6 +399,14 @@ class Program
                 return;
             }
             fornecedorRepo.Remover(id);
+        }
+        else if (op == "5")
+        {
+            Console.Write("Digite o nome do fornecedor para buscar: ");
+            var nomeBusca = Console.ReadLine();
+            var resultados = fornecedorRepo.ObterTodos().Where(f => f.Nome.Contains(nomeBusca ?? "", StringComparison.OrdinalIgnoreCase));
+            foreach (var f in resultados)
+                Console.WriteLine($"{f.Id} - {f.Nome} - {f.CnpjOuCaf}");
         }
     }
 }
