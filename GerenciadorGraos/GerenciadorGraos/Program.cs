@@ -28,11 +28,11 @@ class Program
 
     static void MenuGrao(GraoJsonRepository graoRepo, FornecedorJsonRepository fornecedorRepo)
     {
-        Console.WriteLine("1 - Adicionar Grão");
-        Console.WriteLine("2 - Listar Grãos");
-        Console.WriteLine("3 - Atualizar Grão");
-        Console.WriteLine("4 - Remover Grão");
-        Console.WriteLine("5 - Buscar Grãos por Nome (LINQ)");
+        Console.WriteLine("1 - Adicionar novo grão");
+        Console.WriteLine("2 - Listar todos os grãos");
+        Console.WriteLine("3 - Atualizar informações de um grão");
+        Console.WriteLine("4 - Remover um grão");
+        Console.WriteLine("5 - Buscar grãos pelo nome");
         var op = Console.ReadLine();
 
         if (op == "1")
@@ -170,12 +170,12 @@ class Program
 
     static void MenuSilo(SiloSqlRepositorio siloRepo, GraoJsonRepository graoRepo)
     {
-        Console.WriteLine("1 - Adicionar Silo");
-        Console.WriteLine("2 - Listar Silos");
-        Console.WriteLine("3 - Inserir lote de grão no Silo");
-        Console.WriteLine("4 - Remover Silo");
-        Console.WriteLine("5 - Remover quantidade de grão do Silo");
-        Console.WriteLine("6 - Buscar Silos por Tipo de Grão (LINQ to Entities)");
+        Console.WriteLine("1 - Adicionar novo silo");
+        Console.WriteLine("2 - Listar todos os silos (apenas os cadastrados no banco)");
+        Console.WriteLine("3 - Inserir lote de grão em um silo");
+        Console.WriteLine("4 - Remover um silo");
+        Console.WriteLine("5 - Remover quantidade de grão de um silo");
+        Console.WriteLine("6 - Buscar silos pelo nome (apenas os cadastrados no banco)");
         var op = Console.ReadLine();
 
         if (op == "1")
@@ -336,11 +336,11 @@ class Program
 
     static void MenuFornecedor(FornecedorJsonRepository fornecedorRepo)
     {
-        Console.WriteLine("1 - Adicionar Fornecedor");
-        Console.WriteLine("2 - Listar Fornecedores");
-        Console.WriteLine("3 - Atualizar Fornecedor");
-        Console.WriteLine("4 - Remover Fornecedor");
-        Console.WriteLine("5 - Buscar Fornecedor por Nome (LINQ)");
+        Console.WriteLine("1 - Adicionar novo fornecedor");
+        Console.WriteLine("2 - Listar todos os fornecedores");
+        Console.WriteLine("3 - Atualizar informações de um fornecedor");
+        Console.WriteLine("4 - Remover um fornecedor");
+        Console.WriteLine("5 - Buscar fornecedor pelo nome");
         var op = Console.ReadLine();
 
         if (op == "1")
