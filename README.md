@@ -2,7 +2,7 @@
 
 ### Desenvolvido por: 
 - Gustavo Finkler Hass
-- Pablo Cechim Lima
+- Pablo Emanuel Cechim de Lima
 - Tawan Vitor Silva de Oliveira
 
 # 🌾 Gerenciador de Grãos
