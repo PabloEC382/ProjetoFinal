@@ -4,7 +4,7 @@
 - Gustavo Finkler Hass
 - Pablo Cechim Lima
 - Tawan Vitor Silva de Oliveira
-- 
+
 # 🌾 Gerenciador de Grãos
 
 Sistema em C# para gerenciar grãos, silos e fornecedores de forma simples via terminal. Utiliza **JSON** e **Entity Framework Core** com banco SQLite para persistência de dados.
