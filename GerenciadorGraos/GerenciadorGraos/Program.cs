@@ -79,14 +79,14 @@ class Program
             }
             grao.ValorUnitario = valorUnitario;
 
-            Console.Write("ID do Fornecedor: ");
-            var fornecedorInput = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(fornecedorInput) || !Guid.TryParse(fornecedorInput, out var fornecedorId))
+            Console.Write("Nome do Fornecedor: ");
+            var fornecedorNome = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(fornecedorNome) || fornecedorRepo.ObterTodos().All(f => f.Nome != fornecedorNome))
             {
-                Console.WriteLine("ID inválido.");
+                Console.WriteLine("Fornecedor não encontrado.");
                 return;
             }
-            grao.FornecedorId = fornecedorId;
+            grao.FornecedorNome = fornecedorNome;
 
             grao.AtualizarValorTotal();
             graoRepo.Adicionar(grao);
@@ -94,7 +94,7 @@ class Program
         else if (op == "2")
         {
             foreach (var g in graoRepo.ObterTodos())
-                Console.WriteLine($"{g.Id} - {g.Nome} - Lote: {g.NumeroLote} - Peso: {g.Peso}Kg - Quantidade: {g.Quantidade} - Valor Unitário: R$ {g.ValorUnitario:F2} - Total: R$ {g.ValorTotalLote:F2}");
+                Console.WriteLine($"{g.Id} - {g.Nome} - Lote: {g.NumeroLote} - Peso: {g.Peso}Kg - Quantidade: {g.Quantidade} - Valor Unitário: R$ {g.ValorUnitario:F2} - Total: R$ {g.ValorTotalLote:F2} - Fornecedor: {g.FornecedorNome}");
         }
         else if (op == "3")
         {
@@ -138,10 +138,10 @@ class Program
             if (!string.IsNullOrWhiteSpace(novoValor) && decimal.TryParse(novoValor, out var valorUnitario))
                 grao.ValorUnitario = valorUnitario;
 
-            Console.Write($"Novo ID do Fornecedor [{grao.FornecedorId}]: ");
-            var novoFornecedor = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(novoFornecedor) && Guid.TryParse(novoFornecedor, out var fornecedorId))
-                grao.FornecedorId = fornecedorId;
+            Console.Write($"Novo nome do Fornecedor [{grao.FornecedorNome}]: ");
+            var novoFornecedorNome = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(novoFornecedorNome) && fornecedorRepo.ObterTodos().Any(f => f.Nome == novoFornecedorNome))
+                grao.FornecedorNome = novoFornecedorNome;
 
             grao.AtualizarValorTotal();
             graoRepo.Atualizar(grao);

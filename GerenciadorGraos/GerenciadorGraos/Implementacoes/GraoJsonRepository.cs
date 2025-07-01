@@ -46,14 +46,13 @@ namespace GerenciadorGraos.Implementacoes
             var existente = _graos.FirstOrDefault(g => g.Id == grao.Id);
             if (existente != null)
             {
-                // Atualiza todos os campos
                 existente.Nome = grao.Nome;
                 existente.NumeroLote = grao.NumeroLote;
                 existente.Peso = grao.Peso;
                 existente.Quantidade = grao.Quantidade;
                 existente.DataEntrega = grao.DataEntrega;
                 existente.ValorUnitario = grao.ValorUnitario;
-                existente.FornecedorId = grao.FornecedorId;
+                existente.FornecedorNome = grao.FornecedorNome;
                 existente.ValorTotalLote = grao.ValorTotalLote;
                 SalvarNoArquivo();
             }
