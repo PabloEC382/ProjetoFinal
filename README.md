@@ -1,7 +1,7 @@
 # ProjetoFinal
 
 ### Desenvolvido por: 
-- Gustavo Finkler Hass
+- Gustavo Finkler Haas
 - Pablo Emanuel Cechim de Lima
 - Tawan Vitor Silva de Oliveira
 
